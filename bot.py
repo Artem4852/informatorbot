@@ -97,8 +97,12 @@ async def news(update: Update, context: CallbackContext):
 
     if messages:
         merged = "Summarize these news messages in 1-2 sentences: \n\n" + "\n\n".join([f"{message.text} | LINK THAT SHOULD BE PROVIDED IN `Детальніше` - {message.link}" for message in messages])
+        with open("input.txt", "w") as f:
+            f.write(merged)
         # print(merged)
         output = send_message(merged)
+        with open("output.txt", "w") as f:
+            f.write(output)
         print(output)
         output = "Ваші новини 🐈\n\n" + output.replace("#", "")
         await update.message.reply_text(output, parse_mode="Markdown", link_preview_options=LinkPreviewOptions(is_disabled=True, url=None), reply_markup=ReplyKeyboardMarkup(keyboard=[[KeyboardButton('/news')]], resize_keyboard=True, one_time_keyboard=True))
