@@ -1,0 +1,13 @@
+[Unit]
+Description=Telegram Bot
+After=network.target
+
+[Service]
+ExecStart=/home/artem4852/pub/informatorbot/bin/python /home/artem4852/pub/informatorbot/bot.py
+Restart=always
+User=artem4852
+WorkingDirectory=/home/artem4852/pub/informatorbot
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
